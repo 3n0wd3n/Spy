@@ -56,6 +56,8 @@ const changeLanguageVariant = () => {
       //TODO: use cz json to set everything else
     } else {
       language.setAttribute("data-language", "en");
+
+      //TODO: use en json to set everything else
     }
     // console.log(language.getAttribute("data-language"));
   });
