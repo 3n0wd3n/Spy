@@ -1,10 +1,51 @@
-$primary-color: #3498db;
+$primary-dark-blue: #0d1b2a;
+$secondary-dark-blue: #1b263b;
+$primary-blue: #415a77;
+$secondary-blue: #778da9;
+$primary-gray: #e0e1dd;
 
 body {
-  background-color: $primary-color;
-  font-family: Arial, sans-serif;
-}
+  &.dark {
+    background-color: $primary-dark-blue;
+  }
+  &.light {
+    background-color: $primary-gray;
+  }
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: column;
+  padding: 48px 31px;
+  min-height: 100vh;
+  max-width: 100vw;
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+    gap: 48px;
+  }
 
-h1 {
-  color: white;
+  .game-controls--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-flow: row;
+    cursor: pointer;
+    img {
+      height: 24px;
+      width: 40px;
+      color: $primary-dark-blue;
+      cursor: pointer;
+    }
+  }
+
+  .game-controls--bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+    flex-flow: row;
+    cursor: pointer;
+  }
 }

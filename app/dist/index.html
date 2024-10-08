@@ -3,10 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpack SCSS Projekt</title>
+    <title>Spy Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>Ahoj, Webpack a SCSS!</h1>
+  <body class="light">
+    <!-- game controls at the top of the page -->
+    <div class="game-controls--header">
+      <div class="color-mode">mode</div>
+      <div class="language-variant" data-language="en">
+        <img src="./images/language.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- main context of the game -->
+    <div class="context">
+      <div class="context--menu">
+        <img src="./images/spy-dark.svg" alt="" />
+        <div class="sections">
+          <div class="sections__item"></div>
+          <div class="sections__item"></div>
+          <div class="sections__item"></div>
+          <div class="sections__item"></div>
+          <div class="sections__item"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- game controls at the bottom of the game -->
+    <div class="game-controls--bottom">
+      <div class="btn-container--back">back</div>
+      <div class="btn-container--info">
+        <img src="./images/question.svg" alt="" />
+      </div>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>

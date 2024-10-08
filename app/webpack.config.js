@@ -10,11 +10,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/, // Jakmile Webpack narazí na SCSS soubor
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.svg$/, // Pravidlo pro obrázky a SVG
         use: [
-          "style-loader", // Injectuje CSS do HTML
-          "css-loader", // Překládá CSS do JS
-          "sass-loader", // Kompiluje SCSS do CSS
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]", // Vygeneruje unikátní název souboru
+              outputPath: "images/", // Cesta, kam se soubory uloží
+            },
+          },
         ],
       },
     ],
