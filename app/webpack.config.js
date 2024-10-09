@@ -28,7 +28,7 @@ module.exports = {
     ],
   },
   devServer: {
-    static: path.join(__dirname, "dist"), // Umožňuje sloužit obsah z dist složky
+    static: path.join(__dirname, "dist"), // Umožňuje sloučit obsah z dist složky
     compress: true, // Zapne kompresi
     port: 9000, // Port na kterém server poběží
     open: true, // Otevře prohlížeč automaticky
