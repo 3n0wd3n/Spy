@@ -4,3 +4,5 @@ A personal project to create a web-based game inspired by the spy concept. In th
 
 ## Figma design of the SPYGAME
 [Spy](https://www.figma.com/design/MqRKP1Wfqq8ahyhC8reAEg/SPY?node-id=0-1&t=pHAgDxjkQUD8X6I6-1)
+
+![image](https://github.com/user-attachments/assets/f171020a-446b-4e9f-b74c-ac919d97d31b)
