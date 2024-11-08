@@ -63,4 +63,55 @@ const changeLanguageVariant = () => {
   });
 };
 
+const infoSectionFunctionality = () => {
+  const dotContainer = document.querySelector(".info__dot");
+  const paragraphs = document.querySelectorAll(".info__text");
+
+  paragraphs.forEach((_, index) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dot.addEventListener("click", () => activateParagraph(index));
+    dotContainer.appendChild(dot);
+  });
+
+  function activateParagraph(index) {
+    document.querySelectorAll(".dot").forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove("inactive");
+      } else {
+        dot.classList.add("inactive");
+      }
+    });
+
+    paragraphs.forEach((p, i) => {
+      if (i === index) {
+        p.classList.remove("hide");
+      } else {
+        p.classList.add("hide");
+      }
+    });
+  }
+
+  activateParagraph(0);
+};
+
+const switchToInfoPage = () => {
+  let infoBtn = document.querySelector(".btn-container--info");
+  infoBtn.addEventListener("click", () => {
+    if (infoBtn.classList.contains("active")) {
+      document.querySelector(".info").classList.add("hide");
+      document.querySelector(".sections").classList.remove("hide");
+      document.querySelector(".context-img").classList.remove("behind");
+      infoBtn.classList.remove("active");
+    } else {
+      document.querySelector(".info").classList.remove("hide");
+      document.querySelector(".sections").classList.add("hide");
+      document.querySelector(".context-img").classList.add("behind");
+      infoBtn.classList.add("active");
+    }
+  });
+};
+
 changeLanguageVariant();
+infoSectionFunctionality();
+switchToInfoPage();
