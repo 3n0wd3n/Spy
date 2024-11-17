@@ -10,7 +10,10 @@ const gameObjectGENERAL = {
 const gameObjectEN = {
   gameControls: {
     headerControls: {
-      colorMode: ["light", "dark"],
+      colorMode: {
+        light: "light mode",
+        dark: "dark mode",
+      },
       languageVariant: ["cz", "en"],
     },
     bottomControls: {
@@ -25,6 +28,14 @@ const gameObjectEN = {
     mode: "mode",
   },
   playBtn: "play",
+  infoSectionGeneral: {
+    tense:
+      '<span class="bold-text">Welcome to Spy</span>, the digital board game you can enjoy anytime, anywhere. All you need is a group of friends and a great vibe. To get started, pick a theme—each comes with its own unique design and word set, or you can create your own. Every theme adds a new twist to your game, making it even more exciting.',
+  },
+  infoSectionRoles: {
+    tense:
+      '<span class="bold-text">In Spy, there are two roles:</span> Agent and Spy. Agents work together to identify the Spy, while the Spy must avoid detection and escape elimination. The rules for each role vary slightly depending on the game mode you choose.',
+  },
   timerSection: {
     title: "timer",
     timeLabel: {
@@ -118,7 +129,10 @@ const gameObjectEN = {
 const gameObjectCZ = {
   gameControls: {
     headerControls: {
-      colorMode: ["světlý", "tmavý"],
+      colorMode: {
+        light: "světlý mod",
+        dark: "tmavý mod",
+      },
       languageVariant: ["cz", "en"],
     },
     bottomControls: {
@@ -133,6 +147,14 @@ const gameObjectCZ = {
     mode: "mod",
   },
   playBtn: "hrát",
+  infoSectionGeneral: {
+    tense:
+      '<span class="bold-text">Vítejte ve hře Spy</span>, digitální deskové hře, kterou si můžete užít kdykoli a kdekoli. Vše, co potřebujete, je skupina přátel a skvělá atmosféra. Na začátek si vyberte téma – každé má svůj vlastní jedinečný design a sadu slov, nebo si můžete vytvořit vlastní. Každé téma přináší nové zvraty do vaší hry, což ji činí ještě napínavější.',
+  },
+  infoSectionRoles: {
+    tense:
+      '<span class="bold-text">Ve hře Spy jsou dvě role:</span> Agent a Špión. Agenti spolupracují, aby identifikovali Špióna, zatímco Špión se musí vyhnout odhalení a uniknout eliminaci. Pravidla pro každou roli se mírně liší v závislosti na zvoleném herním módu.',
+  },
   timerSection: {
     title: "časovač",
     timeLabel: {
@@ -223,20 +245,42 @@ const gameObjectCZ = {
   },
 };
 
+// Helper function to get a nested value from the object using a dot-separated key
+const getNestedValue = (obj, key) => {
+  // TODO: udělej podmínku, že pokud byl světlý mod, tak se vybere svělá a když byl tmavý mod, tak se vybere text pro tmavý mod
+  return key.split(".").reduce((o, k) => (o && o[k] !== undefined ? o[k] : null), obj);
+};
+
+const loopThroughChangeableElement = (changeableElements, gameData) => {
+  // Loop through each changeable element
+  changeableElements.forEach((element) => {
+    // Get the key from the element's data attribute
+    const dataKey = element.getAttribute("data-change");
+
+    // Find the corresponding text in the selected language object
+    const text = getNestedValue(gameData, dataKey);
+
+    // Update the element's content with the new text
+    if (text) {
+      element.innerHTML = text;
+    }
+  });
+};
+
 const changeLanguageVariant = () => {
   let language = document.querySelector(".language-variant");
 
   language.addEventListener("click", () => {
-    if (language.getAttribute("data-language") == "en") {
-      language.setAttribute("data-language", "cz");
+    let currentLanguage = language.getAttribute("data-language");
+    let newLanguage = currentLanguage === "cz" ? "en" : "cz";
 
-      //TODO: use cz json to set everything else
-    } else {
-      language.setAttribute("data-language", "en");
+    language.setAttribute("data-language", newLanguage);
 
-      //TODO: use en json to set everything else
-    }
-    // console.log(language.getAttribute("data-language"));
+    const gameData = newLanguage === "cz" ? gameObjectCZ : gameObjectEN;
+
+    const changeableElements = document.querySelectorAll(".changeable");
+
+    loopThroughChangeableElement(changeableElements, gameData);
   });
 };
 

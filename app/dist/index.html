@@ -14,24 +14,24 @@
   <body class="light">
     <!-- game controls at the top of the page -->
     <div class="game-controls--header">
-      <div class="color-mode">light mode</div>
-      <div class="language-variant" data-language="en">
+      <div class="color-mode changeable" data-change="gameControls.headerControls.colorMode.light">light mode</div>
+      <div class="language-variant changeable" data-change="languageVariant" data-language="en">
         <img src="./images/language.svg" alt="" />
       </div>
     </div>
 
     <!-- main context of the game -->
     <div class="context">
-      <img class="context-img behind" src="./images/spy-dark.svg" alt="" />
+      <img class="context-img" src="./images/spy-dark.svg" alt="" />
       <div class="context--menu">
-        <div class="sections hide">
+        <div class="sections">
           <div class="sections__item">
             <div class="item-icon">
               <!-- icon -->
               <!-- count -->
               <span>3</span>
             </div>
-            <div class="item-name">PLAYERS</div>
+            <div class="item-name changeable" data-change="sections.players">PLAYERS</div>
           </div>
           <div class="sections__item">
             <div class="item-icon">
@@ -39,7 +39,7 @@
               <!-- count -->
               <span>1</span>
             </div>
-            <div class="item-name">SPY/IES</div>
+            <div class="item-name changeable" data-change="sections.spies">SPY/IES</div>
           </div>
           <div class="sections__item">
             <div class="item-icon">
@@ -47,7 +47,7 @@
               <!-- count -->
               <span>4</span>
             </div>
-            <div class="item-name">TIMER</div>
+            <div class="item-name changeable" data-change="sections.timer">TIMER</div>
           </div>
           <div class="sections__item">
             <div class="item-icon">
@@ -55,7 +55,7 @@
               <!-- count -->
               <span>6</span>
             </div>
-            <div class="item-name">CATEGORIES</div>
+            <div class="item-name changeable" data-change="sections.categories">CATEGORIES</div>
           </div>
           <div class="sections__item">
             <div class="item-icon">
@@ -63,19 +63,19 @@
               <!-- count -->
               <span>1</span>
             </div>
-            <div class="item-name">MODE</div>
+            <div class="item-name changeable" data-change="sections.mode">MODE</div>
           </div>
-          <span class="play-button">PLAY</span>
+          <span class="play-button changeable" data-change="playBtn">PLAY</span>
         </div>
       </div>
-      <div class="info">
-        <p class="info__text">
+      <div class="info hide">
+        <p class="info__text changeable" data-change="infoSectionGeneral.tense">
           <span class="bold-text">Welcome to Spy</span>, the digital board game you can enjoy anytime, anywhere. All you
           need is a group of friends and a great vibe. To get started, pick a theme—each comes with its own unique
           design and word set, or you can create your own. Every theme adds a new twist to your game, making it even
           more exciting.
         </p>
-        <p class="info__text hide">
+        <p class="info__text hide changeable" data-change="infoSectionRoles.tense">
           <span class="bold-text">In Spy, there are two roles:</span> Agent and Spy. Agents work together to identify
           the Spy, while the Spy must avoid detection and escape elimination. The rules for each role vary slightly
           depending on the game mode you choose.
