@@ -60,7 +60,7 @@ const gameObjectEN = {
     inputPlaceholder: "player",
   },
   modeSection: {
-    title: "mode",
+    title: "Mode",
     default: {
       title: "default",
       text: "Agents receive the same secret word while spies receive a slightly different word (ex: lemon vs. lime). No one knows their role, including the spies. Each round players describe their secret words, discuss with each other based on the clues, and vote out a player. As an agent, your mission is to identify yourself as an agent and catch the spies. As a spy, your mission is to stay cool, identify yourself as a spy and blend in. As a lemon agent, can you decipher the clues and find out one of the spies?",
@@ -284,6 +284,16 @@ const changeLanguageVariant = () => {
   });
 };
 
+const setTextBasedOnLanguageVariant = () => {
+  let language = document.querySelector(".language-variant").getAttribute("data-language");
+
+  const gameData = language === "cz" ? gameObjectCZ : gameObjectEN;
+  const changeableElements = document.querySelectorAll(".changeable");
+
+  loopThroughChangeableElement(changeableElements, gameData);
+};
+
+// INFO page
 const infoSectionFunctionality = () => {
   const dotContainer = document.querySelector(".info__dot");
   const paragraphs = document.querySelectorAll(".info__text");
@@ -318,6 +328,7 @@ const infoSectionFunctionality = () => {
 
 const switchToInfoPage = () => {
   let infoBtn = document.querySelector(".btn-container--info");
+
   infoBtn.addEventListener("click", () => {
     if (infoBtn.classList.contains("active")) {
       document.querySelector(".info").classList.add("hide");
@@ -333,6 +344,27 @@ const switchToInfoPage = () => {
   });
 };
 
+// MODE page
+const switchToModePage = () => {
+  let modeBtn = document.querySelector(".btn-mode");
+
+  modeBtn.addEventListener("click", () => {
+    if (!modeBtn.classList.contains("active")) {
+      document.querySelector(".mode").classList.remove("hide");
+      document.querySelector(".sections").classList.add("hide");
+      modeBtn.classList.add("active");
+    }
+  });
+
+  setTextBasedOnLanguageVariant();
+  // document.querySelector(".mode").classList.add("hide");
+  // infoBtn.classList.remove("active");
+
+  // TODO change info butto to back button and add class back-from-mode
+};
+
+// Start of the functions
 changeLanguageVariant();
 infoSectionFunctionality();
 switchToInfoPage();
+switchToModePage();

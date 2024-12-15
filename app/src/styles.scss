@@ -154,6 +154,13 @@ body {
         }
       }
     }
+    .mode {
+      display: flex;
+      flex-flow: column;
+      &.hide {
+        display: none;
+      }
+    }
   }
 
   .game-controls--bottom {

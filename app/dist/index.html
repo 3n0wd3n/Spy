@@ -63,11 +63,12 @@
               <!-- count -->
               <span>1</span>
             </div>
-            <div class="item-name changeable" data-change="sections.mode">MODE</div>
+            <div class="item-name btn-mode changeable" data-change="sections.mode">MODE</div>
           </div>
           <span class="play-button changeable" data-change="playBtn">PLAY</span>
         </div>
       </div>
+      <!-- INFO page -->
       <div class="info hide">
         <p class="info__text changeable" data-change="infoSectionGeneral.tense">
           <span class="bold-text">Welcome to Spy</span>, the digital board game you can enjoy anytime, anywhere. All you
@@ -81,6 +82,17 @@
           depending on the game mode you choose.
         </p>
         <div class="info__dot"></div>
+      </div>
+      <!-- MODE page -->
+      <div class="mode hide">
+        <h2 class="changeable" data-change="modeSection.title"></h2>
+        <div class="mode__item">
+          <div class="item__header">
+            <h3 class="item-hedline changeable" data-change="modeSection.default.title"></h3>
+            <img class="context-img" src="./images/arrow.svg" alt="" />
+          </div>
+          <p class="item__text changeable" data-change="modeSection.default.text"></p>
+        </div>
       </div>
     </div>
 
