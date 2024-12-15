@@ -60,6 +60,7 @@ const gameObjectEN = {
     inputPlaceholder: "player",
   },
   modeSection: {
+    selected: "default",
     title: "Mode",
     default: {
       title: "default",
@@ -179,6 +180,7 @@ const gameObjectCZ = {
     inputPlaceholder: "hráč",
   },
   modeSection: {
+    selected: "default",
     title: "Herní mod",
     default: {
       title: "základní",
@@ -357,7 +359,6 @@ const switchToInfoPage = () => {
     } else {
       infoBtn.firstElementChild.innerHTML = "?";
       let className = getParticularClass(infoBtn.classList, "back");
-      console.log(infoBtn.classList, className);
       let pageFromClass = className.slice(10);
 
       switch (pageFromClass) {
@@ -393,8 +394,41 @@ const switchToModePage = () => {
   setTextBasedOnLanguageVariant();
 };
 
+const toggleActiveClassInModePage = () => {
+  document.querySelectorAll(".mode__item").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      document.querySelectorAll(".mode__item").forEach((innerItem) => {
+        // INACTIVE ITEM
+
+        // Text hidden
+        let innerItemText = innerItem.querySelector(".item__text");
+        innerItemText.classList.remove("active");
+        // Update json
+        gameObjectCZ.modeSection.selected = innerItemText.getAttribute("data-mode");
+        gameObjectEN.modeSection.selected = innerItemText.getAttribute("data-mode");
+        // Arrow inactive
+        innerItem.querySelector(".context-img").classList.add("down");
+        innerItem.querySelector(".context-img").classList.remove("up");
+
+        // ACTIVE ITEM
+
+        // Text shown
+        let itemText = item.querySelector(".item__text");
+        itemText.classList.add("active");
+        // Update json
+        gameObjectCZ.modeSection.selected = itemText.getAttribute("data-mode");
+        gameObjectEN.modeSection.selected = itemText.getAttribute("data-mode");
+        // Arrow active
+        item.querySelector(".context-img").classList.remove("down");
+        item.querySelector(".context-img").classList.add("up");
+      });
+    });
+  });
+};
+
 // Start of the functions
 changeLanguageVariant();
 infoSectionFunctionality();
 switchToInfoPage();
 switchToModePage();
+toggleActiveClassInModePage();
