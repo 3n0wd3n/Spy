@@ -1,5 +1,4 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js", // Vstupní bod - hlavní JS soubor
@@ -11,41 +10,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/, // Načítání SCSS
-        use: [
-          MiniCssExtractPlugin.loader, // Extrahuje CSS do souboru
-          "css-loader", // Převádí CSS na CommonJS
-          "sass-loader", // Převádí SCSS na CSS
-        ],
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.css$/, // Načítání čistého CSS
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.svg$/, // Obrázky a SVG
+        test: /\.svg$/, // Pravidlo pro obrázky a SVG
         use: [
           {
             loader: "file-loader",
             options: {
-              name: "[name].[ext]",
-              outputPath: "images/",
+              name: "[name].[ext]", // Vygeneruje unikátní název souboru
+              outputPath: "images/", // Cesta, kam se soubory uloží
             },
           },
         ],
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "styles/[name].css", // Vygenerovaný CSS soubor
-    }),
-  ],
   devServer: {
-    static: path.join(__dirname, "dist"), // Obsahuje dist složku
+    static: path.join(__dirname, "dist"), // Umožňuje sloučit obsah z dist složky
     compress: true, // Zapne kompresi
-    port: 9000, // Port serveru
-    open: true, // Automaticky otevře prohlížeč
+    port: 9000, // Port na kterém server poběží
+    open: true, // Otevře prohlížeč automaticky
   },
-  mode: "development", // Vývojový mód (změňte na "production" pro produkci)
+  mode: "development", // Vývojový mód
 };

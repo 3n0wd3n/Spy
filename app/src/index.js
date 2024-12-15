@@ -326,20 +326,51 @@ const infoSectionFunctionality = () => {
   activateParagraph(0);
 };
 
+const getParticularClass = (classNames, includes) => {
+  let classNameToReturn;
+
+  classNames.forEach((className) => {
+    if (className.includes(includes)) {
+      classNameToReturn = className;
+    }
+  });
+
+  return classNameToReturn;
+};
+
 const switchToInfoPage = () => {
   let infoBtn = document.querySelector(".btn-container--info");
 
   infoBtn.addEventListener("click", () => {
-    if (infoBtn.classList.contains("active")) {
-      document.querySelector(".info").classList.add("hide");
-      document.querySelector(".sections").classList.remove("hide");
-      document.querySelector(".context-img").classList.remove("behind");
-      infoBtn.classList.remove("active");
+    if (!infoBtn.classList.contains("back")) {
+      if (infoBtn.classList.contains("active")) {
+        document.querySelector(".info").classList.add("hide");
+        document.querySelector(".sections").classList.remove("hide");
+        document.querySelector(".context-img").classList.remove("behind");
+        infoBtn.classList.remove("active");
+      } else {
+        document.querySelector(".info").classList.remove("hide");
+        document.querySelector(".sections").classList.add("hide");
+        document.querySelector(".context-img").classList.add("behind");
+        infoBtn.classList.add("active");
+      }
     } else {
-      document.querySelector(".info").classList.remove("hide");
-      document.querySelector(".sections").classList.add("hide");
-      document.querySelector(".context-img").classList.add("behind");
-      infoBtn.classList.add("active");
+      infoBtn.firstElementChild.innerHTML = "?";
+      let className = getParticularClass(infoBtn.classList, "back");
+      console.log(infoBtn.classList, className);
+      let pageFromClass = className.slice(10);
+
+      switch (pageFromClass) {
+        case "mode":
+          document.querySelector(".mode").classList.add("hide");
+          document.querySelector(".btn-mode").classList.remove("active");
+          infoBtn.classList.remove("back", "back-from-mode", "active");
+          document.querySelector(".sections").classList.remove("hide");
+          break;
+
+        default:
+          break;
+      }
     }
   });
 };
@@ -347,20 +378,19 @@ const switchToInfoPage = () => {
 // MODE page
 const switchToModePage = () => {
   let modeBtn = document.querySelector(".btn-mode");
+  let infoBtn = document.querySelector(".btn-container--back");
 
   modeBtn.addEventListener("click", () => {
     if (!modeBtn.classList.contains("active")) {
       document.querySelector(".mode").classList.remove("hide");
       document.querySelector(".sections").classList.add("hide");
       modeBtn.classList.add("active");
+      infoBtn.innerHTML = "<-";
+      infoBtn.parentElement.classList.add("back", "back-from-mode");
     }
   });
 
   setTextBasedOnLanguageVariant();
-  // document.querySelector(".mode").classList.add("hide");
-  // infoBtn.classList.remove("active");
-
-  // TODO change info butto to back button and add class back-from-mode
 };
 
 // Start of the functions
